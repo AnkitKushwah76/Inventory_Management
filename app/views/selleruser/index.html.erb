@@ -1,0 +1,60 @@
+<%= render 'navbar'%>
+
+<h1>All Contacts</h1>
+
+<%# <%= link_to "New contact", new_contact_path %> %>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+</head>
+<body>
+
+
+<table>
+  <tr>
+    <th>ItemName</th>
+    <th>Price</th>
+    <th>ItemQuantity</th>
+      
+      <th>image</th>
+      <th>Action</th>
+      
+
+
+  </tr>
+     <%@find_items.each do |items|%>
+  <tr>
+
+    
+    <td><%=items.itemName%></td>
+    <td><%=items.price%></td>
+    <td><%=items.itemQuantity%></td>
+  </tr>
+  <%end%>
+
+  </tr>
+</table>
+
+</body>
+</html>
+
+
