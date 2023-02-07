@@ -1,9 +1,11 @@
 <%= render 'navbar'%>
 
-<h1>All Contacts</h1>
+<h1>All Items</h1>
 
-<%# <%= link_to "New contact", new_contact_path %> %>
+<%# <%= link_to "New item", new_selleruser_path  %>
 
+<a class="nav-link " 
+					href="/selleruser/new" tabindex="-1" >Back</a>
 
 <!DOCTYPE html>
 <html>
@@ -31,7 +33,7 @@ tr:nth-child(even) {
 
 <table>
   <tr>
-    <th>ItemName</th>
+    <th><p>ItemName</p></th>
     <th>Price</th>
     <th>ItemQuantity</th>
       
@@ -42,12 +44,13 @@ tr:nth-child(even) {
 
   </tr>
      <%@find_items.each do |items|%>
-  <tr>
+         <%stock=items.id%>
+         <%s=Stock.find(stock)%>
 
-    
+  <tr>
     <td><%=items.itemName%></td>
     <td><%=items.price%></td>
-    <td><%=items.itemQuantity%></td>
+    <td><%=s.quntity%></td>
   </tr>
   <%end%>
 

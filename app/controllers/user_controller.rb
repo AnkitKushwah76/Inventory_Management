@@ -20,7 +20,6 @@ class UserController < ApplicationController
     @us=User.find_by(email: params[:user][:email] , password: params[:user][:password])
     if  @us.present?
        if @us.user_type=="seller"
-        puts "hhhhhhh"
       session[:current_user_id] = @us.id
       session[:current_user_name] = @us.name
 
@@ -37,6 +36,7 @@ class UserController < ApplicationController
   def userSignup
     @user=User.new(user_params)
     if @user.save
+      redirect_to :action=>"userLogin"
     puts "ok"
   else
     puts "no"

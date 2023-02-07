@@ -1,2 +1,75 @@
-<h1>Selleruser#new</h1>
-<p>Find me in app/views/selleruser/new.html.erb</p>
+<%= render 'navbar'%>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+* {box-sizing: border-box;}
+
+input[type=text], select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+}
+
+input[type=submit] {
+  background-color: #04AA6D;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+.container {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+</style>
+</head>
+<body>
+<div class="text-center">
+<h3>Add Contacts</h3>
+</div>
+<%# <a class="nav-link "  %>
+					<%# href="/contact/index" tabindex="-1" >Back</a> %>
+
+
+<div class="container">
+<%= form_for @item,url: {action: "create"}  do |f| %>
+  <div>
+   <%= f.label :itemName %><br>
+   <%= f.text_field :itemName %><br>
+  </div>
+
+  <div>
+   <%= f.label :price %><br>
+   <%= f.text_field :price %><br>
+  </div>
+
+  
+  <input type="text" name="item[user1_id]" value=<%=session[:current_user_id]%>>
+
+    <div>
+    <br><br>
+    <%= f.submit %>
+  </div>
+<% end %>
+</div>
+
+</body>
+</html>
+
