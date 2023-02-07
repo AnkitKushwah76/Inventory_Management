@@ -36,14 +36,13 @@ tr:nth-child(even) {
     <th><p>ItemName</p></th>
     <th>Price</th>
     <th>ItemQuantity</th>
-      
       <th>image</th>
       <th>Action</th>
       
 
 
   </tr>
-     <%@find_items.each do |items|%>
+     <%@items.each do |items|%>
          <%stock=items.id%>
 
          <%s=Stock.find_by(item_id:stock)%>
@@ -51,7 +50,15 @@ tr:nth-child(even) {
   <tr>
     <td><%=items.itemName%></td>
     <td><%=items.price%></td>
+    <% if s.eql?nil%>
+    <td><%=0%></td>
+    <%else%>
     <td><%=s.quntity%></td>
+    <%end%>
+    <td><% if items.itemImage.present?%>
+    <%=image_tag items.itemImage,style:"width:100px;display:block"%>
+    <%end%></td>
+
   </tr>
   <%end%>
 

@@ -1,12 +1,10 @@
 class ItemsController < ApplicationController
   def index
-    
-     @find_items = Item.where(user_id:session[:current_user_id])
+     @items=Item.where(user_id:current_user.id)
   end
 
 
   def new
-    puts "neww"
     @item=Item.new
   end
 
@@ -29,6 +27,6 @@ class ItemsController < ApplicationController
 
   private
   def item_params
-    params.require(:item).permit(:itemName,:price,:itemImage)
+    params.require(:item).permit(:itemName,:price,:itemImage,:user_id)
   end
 end
