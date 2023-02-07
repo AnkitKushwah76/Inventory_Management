@@ -2,14 +2,14 @@
 
 <h1>All Items</h1>
 
-<%# <%= link_to "New item", new_selleruser_path  %>
 
-<%= link_to "New items", new_item_path %>
 
 
 <!DOCTYPE html>
 <html>
 <head>
+<%= stylesheet_link_tag "buy_button.css" %>
+
 <style>
 table {
   font-family: arial, sans-serif;
@@ -57,10 +57,7 @@ tr:nth-child(even) {
     <%end%>
     <%# <td><%= image_tag item.itemImage unless item.itemImage.nil? %> 
    <td><%="no"%></td>
-   <td><%= link_to "Edit", edit_item_path(item) %>   <%= link_to "Delete", item_path(item), data: {
-                    turbo_method: :delete,
-                    turbo_confirm: "Are you sure?"
-                  } %></td>
+   <td><p><a href="#" class="button">Buy Now</a></p></td>
    
 
   </tr>

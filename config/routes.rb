@@ -12,16 +12,8 @@ Rails.application.routes.draw do
   # root "articles#index"
   root "user#index"
 
-  get  "/sellerLogin" , to: "user#sellerLogin"
-  get "/buyerLogin", to: "user#buyerLogin"
 
-  get "sellercreate", to: "user#sellercreate"
-  get "buyercreate", to: "user#buyercreate"
-  post "userSignup", to: "user#userSignup"
-   post "userLogin", to: "user#userLogin"
-
-  get "new", to: "selleruser#new"
-
+ get "buyersIndex", to:"items#buyersIndex"
   resources :user
   resources :items
 end

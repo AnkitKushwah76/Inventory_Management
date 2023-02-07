@@ -59,12 +59,18 @@ input[type=submit]:hover {
    <%= f.text_field :price %><br>
   </div>
   
+  <div>
+   <%= f.label :Quantity %><br>
+  <input type="number" name="item[quntity]" value=<%=0%>>
+  </div>
+  
+
    <div>
    <%= f.label :itemImage %><br>
    <%= f.file_field :itemImage %><br>
   </div>
 
-  <input type="text" name="item[user_id]" value=<%=current_user.id%>>
+  <input type="hidden" name="item[user_id]" value=<%=current_user.id%>>
 
     <div>
     <br><br>
