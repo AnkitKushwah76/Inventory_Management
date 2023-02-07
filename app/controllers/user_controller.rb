@@ -23,7 +23,7 @@ class UserController < ApplicationController
       session[:current_user_id] = @us.id
       session[:current_user_name] = @us.name
 
-      redirect_to(:controller=> "selleruser",:action =>"index")
+      redirect_to(:controller=> "items",:action =>"index")
       else
         puts"no"
        end

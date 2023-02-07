@@ -44,8 +44,7 @@ input[type=submit]:hover {
 <div class="text-center">
 <h3>Add Contacts</h3>
 </div>
-<%# <a class="nav-link "  %>
-					<%# href="/contact/index" tabindex="-1" >Back</a> %>
+
 
 
 <div class="container">
@@ -60,8 +59,7 @@ input[type=submit]:hover {
    <%= f.text_field :price %><br>
   </div>
 
-  
-  <input type="text" name="item[user1_id]" value=<%=session[:current_user_id]%>>
+  <input type="hidden" name="item[user_id]" value=<%=session[:current_user_id]%>>
 
     <div>
     <br><br>

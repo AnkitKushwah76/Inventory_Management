@@ -1,17 +1,17 @@
-class SelleruserController < ApplicationController
+class ItemsController < ApplicationController
   def index
-    puts session[:current_user_id]
+    
      @find_items = Item.where(user_id:session[:current_user_id])
   end
 
-  def show
-  end
 
   def new
+    puts "neww"
     @item=Item.new
   end
 
   def create
+    puts "hello  seller"
     @item=Item.create(item_params)
     if @item.save
       puts "ok"
@@ -29,6 +29,6 @@ class SelleruserController < ApplicationController
 
   private
   def item_params
-    params.require(:item).permit(:itemName,:price)
+    params.require(:item).permit(:itemName,:price,:itemImage)
   end
 end

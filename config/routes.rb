@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "articles#index"
   root "user#index"
+
   get  "/sellerLogin" , to: "user#sellerLogin"
   get "/buyerLogin", to: "user#buyerLogin"
 
@@ -12,6 +13,9 @@ Rails.application.routes.draw do
   get "buyercreate", to: "user#buyercreate"
   post "userSignup", to: "user#userSignup"
    post "userLogin", to: "user#userLogin"
+
+  get "new", to: "selleruser#new"
+
   resources :user
-  resources :selleruser
+  resources :items
 end

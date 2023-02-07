@@ -4,8 +4,8 @@
 
 <%# <%= link_to "New item", new_selleruser_path  %>
 
-<a class="nav-link " 
-					href="/selleruser/new" tabindex="-1" >Back</a>
+<%= link_to "New items", new_item_path %>
+
 
 <!DOCTYPE html>
 <html>
@@ -45,7 +45,8 @@ tr:nth-child(even) {
   </tr>
      <%@find_items.each do |items|%>
          <%stock=items.id%>
-         <%s=Stock.find(stock)%>
+
+         <%s=Stock.find_by(item_id:stock)%>
 
   <tr>
     <td><%=items.itemName%></td>
