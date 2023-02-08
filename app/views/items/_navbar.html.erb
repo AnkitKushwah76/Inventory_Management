@@ -26,9 +26,11 @@
 		<a class="navbar-brand" href="#">Inventory_Management</a>
 		<%else%>
           <%if current_user.user_type=="seller"%>
-	     	<a class="navbar-brand" href="#">Seller_Name:-<%= current_user.name%></a>
+	     	<a class="navbar-brand" href="#"><b>Seller_Name:-<%= current_user.name%></b></a>
           <%else%>
-	     	<a class="navbar-brand" href="#">Buyer_Name:-<%= current_user.name%></a>
+	     	<a class="navbar-brand" href="#"><b>Buyer_Name:-<%= current_user.name%></b></a>
+		  
+		  
 		  <%end%>
 		<%end%>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -41,22 +43,16 @@
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav ml-auto text-uppercase">
 				 
-				<%# <li class="nav-item active"><a class="nav-link " 
-					href="sellerLogin" tabindex="-1" >SellerLogin</a></li>
-					
-					<li class="nav-item active"><a class="nav-link " 
-					href="/buyerLogin" tabindex="-1" >BuyerLogin</a></li>
-					
-					 %>
+				
     <% if user_signed_in? %>
    <li class="nav-item active"> <a data-toggle ="modal"
-		data-target="#exampleModal" class="nav-link ">Logout</a></li>
+		data-target="#exampleModal" class="nav-link "><b>Logout</b></a></li>
 
                  
 		<%else%>
-	 <li class="nav-item active"><%=link_to 'Sign_In',new_user_session_path,class:"nav-link "%></li>
+	 <li class="nav-item active"><b><%=link_to 'Sign_In',new_user_session_path,class:"nav-link "%></b></li>
 
-							<%end%>
+		<%end%>
 											
 			</ul>
 			

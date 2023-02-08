@@ -8,14 +8,19 @@ class ItemsController < ApplicationController
 
     end
   end
+
+  def show 
+
+  end
+
+
     def cinvoices
       item=Item.find(params[:items][:item_id])
       price=item.price
-      # price= params[:items][:price].to_i
       quantity= params[:items][:quantity].to_i
       total_price=price.to_i*quantity
       @invoice=Invoice.create(customer_name:params[:items][:customer_name],
-       total_price:total_price,item_id:params[:items][:item_id])
+       total_price:total_price,item_id:params[:items][:item_id],user_id:current_user.id)
         if @invoice
           stock=Stock.find_by(item_id:params[:items][:item_id])
            upQuantity=(stock.quntity.to_i)-(quantity)
@@ -54,7 +59,6 @@ class ItemsController < ApplicationController
   def update
       @item=Item.find(params[:id])
       if @item.update(item_params)
-        puts "params[:item][:quntity]----#{params[:item][:quntity]}"
         @stock=Stock.find_by(item_id:params[:id])
         @stock.update(quntity:params[:item][:quntity],item_id:@item.id)
         redirect_to action: 'index'
