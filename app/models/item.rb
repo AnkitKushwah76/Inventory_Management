@@ -1,6 +1,7 @@
 class Item < ApplicationRecord
     has_many_attached :itemImage
     has_one :stock ,dependent: :destroy
+    has_many :invoices,dependent: :destroy
     belongs_to :user ,optional: true
 
 end

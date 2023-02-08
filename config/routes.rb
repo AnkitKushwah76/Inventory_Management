@@ -6,14 +6,12 @@ Rails.application.routes.draw do
   }
 
 
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  # Defines the root path route ("/")
-  # root "articles#index"
+ 
   root "user#index"
 
-
- get "buyersIndex", to:"items#buyersIndex"
+  post  "cinvoices", to:"items#cinvoices"
+  
+  get "buyersIndex", to:"items#buyersIndex"
   resources :user
   resources :items
 end

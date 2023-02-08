@@ -52,13 +52,26 @@ tr:nth-child(even) {
     <td><%=item.itemName%></td>
     <td><%=item.price%></td>
     <% if s.eql?nil%>
+    <%q1=0%>
     <td><%=0%></td>
     <%else%>
+     <%q1=s.quntity%>
     <td><%=s.quntity%></td>
     <%end%>
     <%# <td><%= image_tag item.itemImage unless item.itemImage.nil? %> 
    <td><%="no"%></td>
-    <td><a data-toggle="modal" data-id=<%=item.id%> title="Add this item" class="open-exampleModal button" href="#exampleModal">Buy Now</a>
+    <td>
+    <%if q1==0%>
+    <a data-toggle="modal" data-id1=<%=item.itemName%>
+    data-id2=<%=item.price%>
+    data-id3= <%=q1%>
+    data-id4=<%=s.id%>
+    data-id5=<%= current_user.name%>
+    title="Add this item" class="open-AddBookDialog button" 
+    href="#addBookDialog">Buy Now</a>
+    <%else%>
+    <a class=" button" disabled >Not available</a>
+    <%end%>
   </td>
    
   </tr>
@@ -78,34 +91,30 @@ tr:nth-child(even) {
    <div class="modal-dialog" role="document">
    <div class="modal-content">
  <div class="modal-header">
-    <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+    <h5 class="modal-title" id="exampleModalLabel">Information </h5>
   </div>
     <div class="modal-body">
-                      <input type="text" name="bookId" id="bookId.id" value="bookId.id/>
 
-        <form>
-          <div >
-            <label for="recipient-name" class="col-form-label">CustomerName:</label>
-            <input type="text"  >
-          </div>
 
-          <div >
-            <label for="recipient-name" class="col-form-label">ItemName:</label>
-            <input type="text" >
-          </div>
-                  <input type="text" name="bookId" <% @id= "bookId"%>id="bookId" value=""/>
-                  
-          <h6>Item_Price:- <%=session[:item_id]%></h6><br>
 
-          <h6>Item_Quantity</h6>
-          <input type="number">
+        <form action="/cinvoices" accept-charset="UTF-8" method="post">
+   
+         <h6>CustomerName-<input type="text" name="items[customer_name]" id="current_user" ></h6>
+         
+          <input type="hidden" name="items[item_id]" id="itemId" >
+           <h6>Item_Name:-<input type="text" name="items[itemName]" id="itemName" ></h6>
+          <h6>Item_Price:-<input type="text" name="items[price]"  id="price" ></h6>
+          <h6>Item_Quantity:-<input type="button"  id="quantity" ></h6>
+          <input type="number" name="items[quantity]"  id="quantity" >
 
-        </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Send message</button>
+        <button type="reset" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        
+        <button type="submit" class="btn btn-primary">Buy_Now</button>
       </div>
+           </form>
+
     </div>
     </div>
     </div>
@@ -115,13 +124,24 @@ tr:nth-child(even) {
 
 
 <script>
-$(document).on("click", ".open-exampleModal", function () {
-     var myBookId = $(this).data('id');
+$(document).on("click", ".open-AddBookDialog", function () {
+     var itemName = $(this).data('id1');
+     var price = $(this).data('id2');
+     var quantity = $(this).data('id3');
+     var itemId = $(this).data('id4'); 
+      var current_user = $(this).data('id5'); 
 
-     $(".modal-body #bookId").val( myBookId );
-     // As pointed out in comments, 
-     // it is unnecessary to have to manually call the modal.
-     // $('#addBookDialog').modal('show');
+
+     $(".modal-body #itemName").val( itemName );
+     $(".modal-body #price").val( price );
+     $(".modal-body #quantity").val( quantity );
+     $(".modal-body #itemId").val( itemId );
+     $(".modal-body #current_user").val( current_user );
+
+
+
+
+     
 });
 
 
