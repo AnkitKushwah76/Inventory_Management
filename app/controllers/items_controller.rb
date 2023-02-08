@@ -9,9 +9,11 @@ class ItemsController < ApplicationController
     end
   end
     def cinvoices
-      price= params[:items][:price].to_i
+      item=Item.find(params[:items][:item_id])
+      price=item.price
+      # price= params[:items][:price].to_i
       quantity= params[:items][:quantity].to_i
-      total_price=price*quantity
+      total_price=price.to_i*quantity
       @invoice=Invoice.create(customer_name:params[:items][:customer_name],
        total_price:total_price,item_id:params[:items][:item_id])
         if @invoice
