@@ -1,11 +1,15 @@
 <%= render 'navbar'%>
 
-<h1>All Items</h1>
+<h1><p>Your Items </p></h1>
 
 <%# <%= link_to "New item", new_selleruser_path  %>
 
-<%= link_to "New items", new_item_path %>
 
+
+<div class="actions">
+<%= link_to "Add items", new_item_path,class:"btn btn-primary btn-lg" %>
+    
+  </div>
 
 <!DOCTYPE html>
 <html>

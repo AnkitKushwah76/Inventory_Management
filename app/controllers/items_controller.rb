@@ -1,6 +1,11 @@
 class ItemsController < ApplicationController
   def index
-     @items=Item.where(user_id:current_user.id)
+    begin
+      @items=Item.where(user_id:current_user.id)
+    rescue => exception
+      redirect_to(:controller=> "user",:action =>"index")
+
+    end
   end
 
   

@@ -48,6 +48,7 @@ tr:nth-child(even) {
          <%s=Stock.find_by(item_id:stock)%>
 
   <tr>
+  
     <td><%=item.itemName%></td>
     <td><%=item.price%></td>
     <% if s.eql?nil%>
@@ -57,9 +58,9 @@ tr:nth-child(even) {
     <%end%>
     <%# <td><%= image_tag item.itemImage unless item.itemImage.nil? %> 
    <td><%="no"%></td>
-   <td><p><a href="#" class="button">Buy Now</a></p></td>
+    <td><a data-toggle="modal" data-id=<%=item.id%> title="Add this item" class="open-exampleModal button" href="#exampleModal">Buy Now</a>
+  </td>
    
-
   </tr>
   <%end%>
 
@@ -69,6 +70,59 @@ tr:nth-child(even) {
 </body>
 </html>
 
-   <%# <td><% if contact.profile_image.persisted?%>
-    <%# <%=image_tag contact.profile_image,style:"width:100px;display:block"%> 
-    <%# <%end%>
+ <!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="addBookDialog"tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+   <div class="modal-dialog" role="document">
+   <div class="modal-content">
+ <div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+  </div>
+    <div class="modal-body">
+                      <input type="text" name="bookId" id="bookId.id" value="bookId.id/>
+
+        <form>
+          <div >
+            <label for="recipient-name" class="col-form-label">CustomerName:</label>
+            <input type="text"  >
+          </div>
+
+          <div >
+            <label for="recipient-name" class="col-form-label">ItemName:</label>
+            <input type="text" >
+          </div>
+                  <input type="text" name="bookId" <% @id= "bookId"%>id="bookId" value=""/>
+                  
+          <h6>Item_Price:- <%=session[:item_id]%></h6><br>
+
+          <h6>Item_Quantity</h6>
+          <input type="number">
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Send message</button>
+      </div>
+    </div>
+    </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+<script>
+$(document).on("click", ".open-exampleModal", function () {
+     var myBookId = $(this).data('id');
+
+     $(".modal-body #bookId").val( myBookId );
+     // As pointed out in comments, 
+     // it is unnecessary to have to manually call the modal.
+     // $('#addBookDialog').modal('show');
+});
+
+
+</script>
