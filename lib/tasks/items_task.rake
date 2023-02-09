@@ -1,17 +1,20 @@
 
+
 require 'csv'
-namespace :items_task do 
-    desc 'Greeting message task'
+  namespace :items_task do
+      desc 'Greeting message task'
+        task create_item: :environment do 
+          file = "db/csv_data/item.csv"
+            CSV.foreach(file, headers: :true) do |row|
+              byebug
+                # item=Item.create!(row.to_hash)
+                if row["itemName"] && row["price"] && row["quantity"] && row["user_id"] !=nil
+                item=Item.create!(itemName:row["itemName"],price:row["price"],user_id:row["user_id"])
+                Stock.create!(quntity:row["quantity"],item_id:item.id)
+                else
+                  puts"sorry"
+                end
 
-    task great_the_item: :environment do 
-        puts "hello Item! wellcome to the rake world!----"
-        file = "db/csv_data/item.csv"
-        CSV.foreach(file, :headers => true) do |row|
-            byebug
-        Item.create(:itemName => row[1],:price => row[2],:itemImage => row[3],:user_id =>"1" )
-         end
-    end
+            end
+        end
 end
-
-
-

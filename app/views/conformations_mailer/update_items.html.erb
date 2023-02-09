@@ -1,0 +1,16 @@
+<h4><b>Hello </b><%= @item_arr[1]%></h4>
+<h5></b>One Iten has been updataed on your dashborad</b></h5>
+ 
+ <h4><b>Before</b></h4>
+ <p><b>Item_name:-</b> <%=@item_arr[2]%></p>
+ <p><b>Item_price:-</b><%=@item_arr[3]%></p>
+ <p><b>Item_Quantity:-</b><%=@item_arr[5]%></p>
+ <h4>**************************************</h4>
+<%item=Item.find(@item_arr[4])%>
+ <%stock=Stock.find_by(item_id:@item_arr[4])%>
+ <h4><b>After</b></h4>
+ <p><b>Item_name:-</b> <%=item.itemName%></p>
+ <p><b>Item_price:-</b><%=item.price%></p>
+ <p><b>Item_Quantity:-</b><%=stock.quntity%></p>
+
+ <h5><b>Thanks</b></h5>

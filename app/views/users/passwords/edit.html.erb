@@ -1,28 +1,35 @@
+<%= render 'users/navbar'%>
 
-
-<h1>sss</h1>
-<h2>Change your password</h2>
+  <div class="col-lg-6 mx-lg-auto">
+  <div class="card shadow">
+  <div class="card-body">
+  <div class="card-header">
+    <h2 class="card-title text-center"><b>Change your password</b></h2>
+  </div>
 
 <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
   <%= render "users/shared/error_messages", resource: resource %>
   <%= f.hidden_field :reset_password_token %>
 
-  <div class="field">
-    <%= f.label :password, "New password" %><br />
+ <div class="form-group">
+    <b><%= f.label :password, "New password" %></b><br />
     <% if @minimum_password_length %>
       <em>(<%= @minimum_password_length %> characters minimum)</em><br />
     <% end %>
     <%= f.password_field :password, autofocus: true, autocomplete: "new-password" %>
   </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation, "Confirm new password" %><br />
+   <div class="form-group">
+    <b><%= f.label :password_confirmation, "Confirm new password" %></b><br />
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
 
   <div class="actions">
-    <%= f.submit "Change mysss password" %>
+    <%= f.submit "Change my password" %>
   </div>
 <% end %>
 
 <%= render "users/shared/links" %>
+ </div>
+  </div>
+  </div>

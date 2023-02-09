@@ -39,17 +39,17 @@ class ItemsController < ApplicationController
           @item=Item.new
         end
 
-  def create
-        puts "hello  seller"
+     def create
         @item=Item.create(item_params)
 
         if @item.save
           Stock.create(quntity:params[:item][:quntity],item_id:@item.id)
+          ConformationsMailer.create_items(current_user.email,current_user.name,@item).deliver
           redirect_to :action =>"index"
           else
             render :new, status: :unprocessable_entity    
         end
-  end
+     end
 
   def edit
     @item=Item.find(params[:id])
@@ -57,14 +57,26 @@ class ItemsController < ApplicationController
   end
 
   def update
+      item_arr=[]
       @item=Item.find(params[:id])
+      @stock=Stock.find_by(item_id:params[:id])
+      item_arr.push(current_user.email)
+      item_arr.push(current_user.name)
+      item_arr.push(@item.itemName)
+      item_arr.push(@item.price)
+      item_arr.push(@item.id)
+      item_arr.push(@stock.quntity)
+
+
+
       if @item.update(item_params)
-        @stock=Stock.find_by(item_id:params[:id])
-        @stock.update(quntity:params[:item][:quntity],item_id:@item.id)
-        redirect_to action: 'index'
-          else
+         @stock=Stock.find_by(item_id:params[:id])
+          @stock.update(quntity:params[:item][:quntity],item_id:@item.id)
+          ConformationsMailer.update_items(item_arr).deliver
+          redirect_to action: 'index'
+      else
           render :edit, status: :unprocessable_entity
-        end
+      end
   end
 
   def destroy

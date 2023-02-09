@@ -1,0 +1,7 @@
+<h4><b>Hello </b><%=@user_name%></h4>
+<h5></b>One Iten has been created on your dashborad</b></h5>
+ <%stock=Stock.find_by(item_id:@item.id)%>
+ <p><b>Item_name:-</b> <%=@item.itemName%></p>
+ <p><b>Item_price:-</b><%=@item.price%></p>
+ <p><b>Item_Quantity:-</b><%=stock.quntity%></p>
+ <h5><b>Thanks</b></h5>
