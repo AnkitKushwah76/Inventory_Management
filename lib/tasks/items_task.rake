@@ -8,13 +8,11 @@ require 'csv'
             CSV.foreach(file, headers: :true) do |row|
               byebug
                 # item=Item.create!(row.to_hash)
-                if row["itemName"] && row["price"] && row["quantity"] && row["user_id"] !=nil
-                item=Item.create!(itemName:row["itemName"],price:row["price"],user_id:row["user_id"])
-                Stock.create!(quntity:row["quantity"],item_id:item.id)
-                else
-                  puts"sorry"
+                if row.to_hash.has_value?(nil)!=true
+                  item=Item.create!(itemName:row["itemName"],price:row["price"],user_id:row["user_id"])
+                  Stock.create!(quntity:row["quantity"],item_id:item.id)
                 end
-
+              
             end
         end
 end
