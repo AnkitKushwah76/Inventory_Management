@@ -52,40 +52,37 @@ input[type=submit]:hover {
 <div class="container">
 
 <%= form_with model: @item do |f| %>
- <div>
-   <%= f.label :itemName %><br>
-   <%= f.text_field :itemName %><br>
+  <div>
+    <%= f.label :Item_name %><br>
+    <%= f.text_field :item_name %><br>
   </div>
 
   <div>
-   <%= f.label :price %><br>
-   <%= f.text_field :price %><br>
+   <%= f.label :Item_price %><br>
+   <%= f.text_field :item_price %><br>
   </div>
   
   <div>
-   <%= f.label :Quantity %><br>
-   <%if @Quantity.eql?nil%>
-  <input type="number" name="item[quntity]" value=<%=0%>>
-  <%else%>
-    <input type="number" name="item[quntity]" value=<%=@Quantity.quntity%>>
-  <%end%>
+    <%= f.label :Quantity %><br>
+    <%if @item.eql?nil%>
+    <input type="number" name="item[item_quatity]" value=<%=0%>>
+    <%else%>
+    <input type="number" name="item[item_quatity]" value=<%=@item.item_quatity%>>
+    <%end%>
   </div>
   
 
-   <div>
-   <%= f.label :itemImage %><br>
-   <%= f.file_field :itemImage %><br>
+  <div>
+   <%= f.label :Item_image %><br>
+   <%= f.file_field :item_image %><br>
   </div>
 
   <input type="hidden" name="item[user_id]" value=<%=current_user.id%>>
-
     <div>
     <br><br>
     <%= f.submit %>
-  </div>
+    </div>
 <% end %>
-
 </div>
-
 </body>
 </html>

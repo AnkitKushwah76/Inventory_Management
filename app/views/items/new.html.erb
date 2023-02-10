@@ -1,6 +1,4 @@
 <%= render 'navbar'%>
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -44,30 +42,27 @@ input[type=submit]:hover {
 <div class="text-center">
 <h3>Add Items</h3>
 </div>
-
-
-
 <div class="container">
 <%= form_for @item,url: {action: "create"}  do |f| %>
   <div>
-   <%= f.label :itemName %><br>
-   <%= f.text_field :itemName %><br>
+   <%= f.label :Item_name %><br>
+   <%= f.text_field :item_name %><br>
   </div>
 
   <div>
-   <%= f.label :price %><br>
-   <%= f.text_field :price %><br>
+   <%= f.label :Item_price %><br>
+   <%= f.text_field :item_price %><br>
   </div>
   
   <div>
-   <%= f.label :Quantity %><br>
-  <input type="number" name="item[quntity]" value=<%=0%>>
+   <%= f.label :Item_quatity %><br>
+  <input type="number" name="item[item_quatity]" value=<%=0%>>
   </div>
   
 
    <div>
-   <%= f.label :itemImage %><br>
-   <%= f.file_field :itemImage %><br>
+   <%= f.label :Item_image %><br>
+   <%= f.file_field :item_image %><br>
   </div>
 
   <input type="hidden" name="item[user_id]" value=<%=current_user.id%>>

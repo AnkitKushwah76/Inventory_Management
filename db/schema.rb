@@ -51,21 +51,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_08_180753) do
   end
 
   create_table "items", force: :cascade do |t|
-    t.string "itemName"
-    t.string "price"
-    t.string "itemImage"
+    t.string "item_name"
+    t.string "item_price"
+    t.string "item_quatity"
+    t.string "item_image"
     t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_items_on_user_id"
-  end
-
-  create_table "stocks", force: :cascade do |t|
-    t.string "quntity"
-    t.integer "item_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["item_id"], name: "index_stocks_on_item_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -96,5 +89,4 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_08_180753) do
   add_foreign_key "invoices", "items"
   add_foreign_key "invoices", "users"
   add_foreign_key "items", "users"
-  add_foreign_key "stocks", "items"
 end
