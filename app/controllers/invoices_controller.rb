@@ -7,9 +7,9 @@ class InvoicesController < ApplicationController
   def create
     @invoices = Invoice.new(invoices_params)
     if @invoices.save
-    puts "hellloinvoicesinvoicesinvoicesinvoices"
+    # puts "hellloinvoicesinvoicesinvoicesinvoices"
     else
-      puts "sooorry"
+      # puts "sooorry"
   end
 end
   private
