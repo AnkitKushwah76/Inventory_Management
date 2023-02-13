@@ -68,14 +68,14 @@
         <h5 class="modal-title" id="exampleModalLabel">Informations </h5>
       </div>
      <div class="modal-body">
-        <form action="/invoices" accept-charset="UTF-8" method="post">
-          <h6>CustomerName-<input type="text" name="items[customer_name]" id="current_user" ></h6>
-            <h6>Item_Name:-<input type="button" name="items[itemName]" id="itemName" ></h6>
-            <h6>Item_Price:-<input type="button" name="items[price]"  id="price" ></h6>
+        <form action="invoices" accept-charset="UTF-8" method="post">
+          <h6>CustomerName-<input type="text" disabled="disabled" name="invoices[customer_name]" id="current_user" ></h6>
+            <h6>Item_Name:-<input type="text" disabled="disabled" name="invoices[item_name]" id="itemName" ></h6>
+            <h6>Item_Price:-<input type="text" disabled="disabled" name="invoices[item_price]"  id="price" ></h6>
             <h6>Item_Quantity:-<input type="button"  id="quantity" ></h6>
             <%# <input type="number" name="items[quantity]" value="0" required> %>
-            <input type="hidden" name="items[item_id]" id="itemId" >
-             Select-Quantity: <input type="number" name="items[quantity]" value="0"  id="itemquantity" />
+            <input type="hidden" name="invoices[item_id]" id="itemId" >
+             Select-Quantity: <input type="number" name="invoices[item_quatity]" value="0"  id="itemquantity" />
        <%# <input type="submit" id="submit" disabled="disabled" /> %>
           <div class="modal-footer">
             <button type="reset" class="btn btn-secondary" data-dismiss="modal">Close</button> 
@@ -107,7 +107,7 @@
     $(document).ready(function () {
         $('#itemquantity').on('input change', function () {
           
-            if ($(this).val() != '0' && $(this).val() != '' ) {
+            if ($(this).val() > 0 && $(this).val() != '' ) {
                 $('#submit').prop('disabled', false);
             }
             else {

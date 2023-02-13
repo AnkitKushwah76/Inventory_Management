@@ -40,12 +40,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_08_180753) do
   end
 
   create_table "invoices", force: :cascade do |t|
-    t.string "customer_name"
-    t.string "total_price"
-    t.integer "item_id", null: false
+    t.string "item_name"
+    t.string "item_price"
+    t.string "item_quatity"
+    t.string "item_image"
+    t.string "date"
+    t.string "time"
+    t.string "total_amount"
+    t.integer "item_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["item_id"], name: "index_invoices_on_item_id"
   end
 
   create_table "items", force: :cascade do |t|
@@ -84,6 +88,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_08_180753) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "invoices", "items"
   add_foreign_key "items", "users"
 end

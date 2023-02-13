@@ -6,8 +6,8 @@ Rails.application.routes.draw do
   }
 
   root 'user#index'
-  post 'invoices', to:'items#invoices'
   get 'my_products', to:'items#my_products'
   resources :user
   resources :items
+  resources :invoices
 end

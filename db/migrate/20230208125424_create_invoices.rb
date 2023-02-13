@@ -1,9 +1,14 @@
 class CreateInvoices < ActiveRecord::Migration[7.0]
   def change
     create_table :invoices do |t|
-      t.string :customer_name
-      t.string :total_price
-      t.references :item, null: false, foreign_key: true
+      t.string :item_name
+      t.string :item_price
+      t.string :item_quatity
+      t.string :item_image
+      t.string :date
+      t.string :time
+      t.string :total_amount
+      t.integer  :item_id
       t.timestamps
     end
   end

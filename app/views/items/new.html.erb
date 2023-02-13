@@ -37,6 +37,7 @@ input[type=submit]:hover {
   padding: 20px;
 }
 </style>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 </head>
 <body>
 <div class="text-center">
@@ -55,8 +56,11 @@ input[type=submit]:hover {
   </div>
   
   <div>
+  
    <%= f.label :Item_quatity %><br>
-  <input type="number" name="item[item_quatity]" value=<%= 0 %>>
+  <input type="number" name="item[item_quatity]"  id="itemquantity"  value=<%= 0 %>>
+     <span>minimum_Item_quatity:1</span>
+
   </div>
   
 
@@ -69,10 +73,24 @@ input[type=submit]:hover {
 
     <div>
     <br><br>
-    <%= f.submit %>
+    <button type="submit" class="btn btn-primary" id="submit" disabled="disabled">Add</button>
+
   </div>
 <% end %>
 </div>
+<script>
+   $(document).ready(function () {
+        $('#itemquantity').on('input change', function () {
+          
+            if ($(this).val() > 0 && $(this).val() != '' ) {
+                $('#submit').prop('disabled', false);
+            }
+            else {
+                $('#submit').prop('disabled', true);
+            }
+        });
+    });
 
+</script>
 </body>
 </html>

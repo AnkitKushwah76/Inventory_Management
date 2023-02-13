@@ -57,10 +57,6 @@ class ItemsController < ApplicationController
     end
   end
   
-  def invoices
-    
-  end
-
   private
 
   def item_params
