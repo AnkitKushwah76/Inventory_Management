@@ -78,3 +78,4 @@ end
 gem 'devise'
 
 gem 'byebug'
+gem 'rubocop-rails', require: false

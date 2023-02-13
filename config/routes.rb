@@ -5,13 +5,9 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   }
 
-
- 
-  root "user#index"
-
-  post  "cinvoices", to:"items#cinvoices"
-  
-  get "buyersIndex", to:"items#buyersIndex"
+  root 'user#index'
+  post 'invoices', to:'items#invoices'
+  get 'my_products', to:'items#my_products'
   resources :user
   resources :items
 end

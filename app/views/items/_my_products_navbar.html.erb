@@ -28,8 +28,9 @@
 					Your-Profile
 				</button>
 				<div class="dropdown-menu">
+                	<a class="dropdown-item" href='user'>Home</a>
 					<%= link_to "Start Selling", new_item_path,  class:"dropdown-item" %>
-					<a class="dropdown-item" href="my_products">My Products</a>
+                    <%= link_to "Export_Csv_File", items_path(format: "csv"),  class:"dropdown-item" %>
 					<a class="dropdown-item" href="#">My Orders </a>
 				</div>
             </div>
@@ -43,7 +44,7 @@
 		</button>
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 		<ul class="navbar-nav ml-auto text-uppercase">
-	 <a class="navbar-brand" href="#"><b>User_Name:-<%= current_user.name %></b></a>
+	 <a class="navbar-brand" href="#"><b>User_Name:-<%= current_user.name%></b></a>
     <% if user_signed_in? %>
    <li class="nav-item active"> <a data-toggle ="modal"
 		data-target="#exampleModal" class="nav-link "><b>Logout</b></a></li>

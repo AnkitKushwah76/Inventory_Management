@@ -1,17 +1,10 @@
 class UserController < ApplicationController
-
   def index
     begin
- 
-      user_id=User.find(current_user.id)
-      if user_id.user_type=="seller"
-        redirect_to(:controller=> "items",:action =>"index")
-      else
-        redirect_to(:controller=> "items",:action =>"buyersIndex")
-      end
-    rescue => exception
-      puts "no"
+      user_id = User.find(current_user.id)
+      redirect_to(controller: 'tems', action: 'index')
+    rescue
+      puts 'sorry'
     end
   end
-
 end

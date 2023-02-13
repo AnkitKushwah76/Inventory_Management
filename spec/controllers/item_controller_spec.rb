@@ -1,49 +1,44 @@
-require 'rails_helper'
-
+require "rails_helper"
 RSpec.describe ItemsController do
-
+  
   describe 'GET index' do
     it 'renders a successful response' do
-      user = User.create!(name: 'ankit1',user_type:"seller",email: "ankit111@gmail.com",password:"aaaaaaa")
-      # item = Item.create(name: 'a', description: 'abc', price: 1, category_id: category.id)
-      get :index, params: { id:user.id}
+      user = User.create!(name: 'ankit1', email: 'ankit111@gmail.com', password: 'aaaaaaa')
+      get :index, params: { id: user.id }
       expect(response.status).to eq(302)
     end
   end
 
-  describe 'GET index' do
-
-  
-    # let(:item){create :item}
-    # let(:user){create :user}
-    # it "renders the index template" do
-    #     byebug  
-    #   get :index
-      
-    #   expect(response).to render_template("index")
-    #   # expect(response).to be_successful
-    #   # expect(response.status).to eq 200
-    # end
-      
-      
-
-        # it "returns player for a user" do
-        #   # byebug 
-        #   get :show, params: { id: user.id }  
-        #   expect(response.status).to eq 200
-        #   end
+  describe 'GET new' do
+    it 'render a successful response' do
+      get :new
+      expect(response).to be_successful
+    end
   end
 
-    
-    # describe 'POST create' do
-    #       let(:user){create :user1}
-    #       it 'create a new user ' do
-    #         post :new
-    #         # byebug
-    #         post :create,params:{user1: {name: user.name,email: user.email,password: user.password}}
-    #         # expect(response.status).to eq 200
-    #         expect(response.media_type).to eq('text/html')
-    #         # expect(response.context_type).to eq 'text/html;charset=utf-8'
-    #       end
-    #      end
+  describe 'POST create' do
+    it'create a new item' do
+      user = User.create!(name: 'ankit1', email: 'ankit111@gmail.com', password: 'aaaaaaa')
+     post :create, params:{item:{item_name:'laptop', item_price:'1200', item_quatity:'12', user_id:user.id}}
+     expect(Item.count).to eq(1)
+    end
+  end
+
+  describe 'PUT update' do
+    it'update the requested item' do
+      user = User.create!(name: 'ankit1', email: 'ankit111@gmail.com', password: 'aaaaaaa')
+      item=Item.create(item_name:'laptop', item_price:'1200', item_quatity:'12', user_id:user.id)
+      post :update, params:{id:item.id,item:{item_name:'laptopHP', item_price:'1300', item_quatity:'11', user_id:user.id}}
+      expect(response.status).to eq(302)
+    end
+  end
+  describe 'DELETE destroy' do
+    it 'destroys the requested item'do
+      user = User.create!(name: 'ankit1', email: 'ankit111@gmail.com', password: 'aaaaaaa')
+      item=Item.create(item_name:'laptop', item_price:'1200', item_quatity:'12', user_id:user.id)
+      delete:destroy,params:{id:item.id,item:{item_name:'laptop', item_price:'1200', item_quatity:'12', user_id:user.id}}
+     expect(response.status).to eq(302)
+    end
+  end
+
 end
