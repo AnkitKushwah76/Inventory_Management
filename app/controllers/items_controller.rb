@@ -1,15 +1,13 @@
 class ItemsController < ApplicationController
   def index
-    begin
-      @items = Item.all
-      @items1 = Item.where(user_id: current_user.id)
-      respond_to do |format|
-        format.html
-        format.csv { send_data @items1.to_csv, filename: "Items-#{Date.today}.csv" }
-      end
-    rescue
-      redirect_to(controller: 'user', action: 'index')
+    @items = Item.all
+    @items1 = Item.where(user_id: current_user.id)
+    respond_to do |format|
+      format.html
+      format.csv { send_data @items1.to_csv, filename: "Items-#{Date.today}.csv" }
     end
+  rescue StandardError
+    redirect_to(controller: 'user', action: 'index')
   end
 
   def new
@@ -50,13 +48,11 @@ class ItemsController < ApplicationController
   end
 
   def my_products
-    begin
-      @items = Item.where(user_id: current_user.id)
-    rescue
-      redirect_to(controller: 'user', action: 'index')
-    end
+    @items = Item.where(user_id: current_user.id)
+  rescue StandardError
+    redirect_to(controller: 'user', action: 'index')
   end
-  
+
   private
 
   def item_params

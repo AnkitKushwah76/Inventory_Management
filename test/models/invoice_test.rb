@@ -1,5 +1,4 @@
-require "test_helper"
-
+require 'test_helper'
 class InvoiceTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true

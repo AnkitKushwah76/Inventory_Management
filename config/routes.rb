@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   }
 
   root 'user#index'
-  get 'my_products', to:'items#my_products'
+  get 'my_products', to: 'items#my_products'
   resources :user
   resources :items
   resources :invoices

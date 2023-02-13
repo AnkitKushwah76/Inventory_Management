@@ -8,7 +8,7 @@ class CreateInvoices < ActiveRecord::Migration[7.0]
       t.string :date
       t.string :time
       t.string :total_amount
-      t.integer  :item_id
+      t.integer :item_id
       t.timestamps
     end
   end
