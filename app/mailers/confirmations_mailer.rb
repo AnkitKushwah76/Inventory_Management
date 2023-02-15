@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ConfirmationsMailer < ApplicationMailer
   def create_items(user_email, user_name, item)
     @item = item
@@ -10,4 +12,6 @@ class ConfirmationsMailer < ApplicationMailer
     user_email = item_arr[0]
     mail(to: user_email, subject: 'Confirmation')
   end
+
+  def create_order; end
 end

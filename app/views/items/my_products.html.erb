@@ -13,14 +13,12 @@
    <thead class="thead-dark">
       <h1 ><%= link_to "Add items", new_item_path, class: "btn btn-primary btn-lg" %>
    <b>Your Items </b></h1>
-
    <tr>
-      <th scope="col"><p>Item_Name</p></th>
-      <th scope="col">Item_Price</th>
-      <th scope="col">Item_Quantity</th>
-      <th scope="col">Item_Image</th>
+      <th scope="col"><p>Product_name</p></th>
+      <th scope="col">Product_Price</th>
+      <th scope="col">Product_Quantity</th>
+      <th scope="col">Image</th>
       <th scope="col">Action</th>
-
    </tr>
    </thead>
     <tbody>
@@ -34,11 +32,9 @@
          <%= image_tag item.item_image, style: "width:100px;height:100px" %>
          <% end %>
          </td>
-         <td><%= link_to "Edit", edit_item_path(item), class: "btn btn-success btn-lg" %>   <%= link_to "Delete", item_path(item), class: "btn btn-danger btn-lg", data: {
-                                                                                                                                     turbo_method: :delete,
-                                                                                                                                     turbo_confirm: "Are you sure?",
-                                                                                                                                   } %></td>
-            <% end %>
+         <td><%= link_to "Edit", edit_item_path(item), class: "btn btn-success btn-lg" %>
+         <%= link_to "Delete", item_path(item), class: "btn btn-danger btn-lg", data: {turbo_method: :delete,turbo_confirm: "Are you sure?"} %></td>
+        <% end %>
       </tr>
   </tbody>
 </table>

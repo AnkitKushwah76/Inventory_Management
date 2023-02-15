@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'csv'
 CSV.open('item.csv', 'wb') do |csv|
   csv << %w[itemName price user_id]

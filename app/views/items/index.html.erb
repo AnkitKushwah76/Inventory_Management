@@ -73,15 +73,12 @@
             <h6>Item_Name:-<input type="text" disabled="disabled" name="invoices[item_name]" id="itemName" ></h6>
             <h6>Item_Price:-<input type="text" disabled="disabled" name="invoices[item_price]"  id="price" ></h6>
             <h6>Item_Quantity:-<input type="button"  id="quantity" ></h6>
-            <%# <input type="number" name="items[quantity]" value="0" required> %>
             <input type="hidden" name="invoices[item_id]" id="itemId" >
+            <input type="hidden" name="invoices[user_id]" value=<%= current_user.id %> >
              Select-Quantity: <input type="number" name="invoices[item_quatity]" value="0"  id="itemquantity" />
-       <%# <input type="submit" id="submit" disabled="disabled" /> %>
           <div class="modal-footer">
             <button type="reset" class="btn btn-secondary" data-dismiss="modal">Close</button> 
-
             <button type="submit" class="btn btn-primary" id="submit" disabled="disabled">Buy_Now</button>
-
           </div>
         </form>
         </div>
@@ -91,7 +88,7 @@
     </div>
 </div>
 <script>
-    $(document).on("click", ".open-AddBookDialog", function () {
+   $(document).on("click", ".open-AddBookDialog", function () {
         var itemName = $(this).data('id1');
         var price = $(this).data('id2');
         var quantity = $(this).data('id3');
@@ -102,18 +99,18 @@
         $(".modal-body #quantity").val( quantity );
         $(".modal-body #itemId").val( itemId );
         $(".modal-body #current_user").val( current_user );     
-    });
+  });
 
-    $(document).ready(function () {
-        $('#itemquantity').on('input change', function () {
-          
-            if ($(this).val() > 0 && $(this).val() != '' ) {
-                $('#submit').prop('disabled', false);
-            }
-            else {
-                $('#submit').prop('disabled', true);
-            }
-        });
-    });
+  $(document).ready(function () {
+  $('#itemquantity').on('input change', function () {
+    
+      if ($(this).val() > 0 && $(this).val() != '' ) {
+          $('#submit').prop('disabled', false);
+      }
+      else {
+          $('#submit').prop('disabled', true);
+      }
+  });
+});
 
 </script>

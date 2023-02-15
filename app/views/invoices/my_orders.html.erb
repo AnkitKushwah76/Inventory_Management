@@ -1,0 +1,145 @@
+<%= render 'navbar'%>
+<%require 'date'
+%>
+<h1 class="text-center">My_Orders</h1>
+<!DOCTYPE html>
+<html>
+<head>
+<%= stylesheet_link_tag "buy_button.css" %>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<style>
+</style>
+</head>
+<body>
+<table class="table">
+ <thead class="thead-dark">
+  <tr>
+    <th scope="col">Product_name</th>
+    <th scope="col">Product_Price</th>
+    <th scope="col">Product_Quantity</th>
+    <th scope="col">image</th>
+    <th scope="col">Action</th>
+  </tr>
+   </thead>
+    <tbody>
+     <%@my_orders.each do |invoice|%>
+     <%items=Item.find(invoice.item_id)%>
+     <%date=invoice.date%>
+     <% time = Time.new%>
+      <tr>
+          <td><b><%=invoice.item_name%></b></td>
+          <td><b><%=invoice.item_price%></b></td>
+          <td><b><%=invoice.item_quatity%></b></td>
+          <td>
+          <%if items.item_image.attached?%>
+          <%= image_tag items.item_image ,style:"width:100px;height:100px"%>
+          <%end%>
+          </td>  
+          <td>
+           <a data-toggle="modal" 
+            data-id1=<%=invoice.date%>
+            data-id2=<%=(invoice.time).delete(' ')%>
+            data-id3= <%=invoice.item_name%>
+            data-id4=<%=invoice.item_price%>
+            data-id5=<%= invoice.item_quatity%>
+            data-id6=<%=invoice.total_amount%>
+             class="open-AddBookDialog btn btn-info"
+            href="#addBookDialog">View</a>
+            <%if time.strftime('%d/%m/%Y').to_i-(date).to_i<=2 %>
+            <a data-toggle ="modal"
+		        data-id1=<%=invoice.id%>
+            class="open-AddBookDialog1 btn btn-danger" href="#addBookDialog1">Cancel Order</a>
+           <%else%>
+           <a href="#" class="btn btn-danger btn-ml disabled" tabindex="-1" role="button" aria-disabled="true">Cancel Order</a>
+           <%end%>
+           </td>  
+          <%end%>
+      </tr>
+      </tbody>
+</table>
+</body>
+</html>
+<!-- Modal -->
+<div class="modal fade" id="addBookDialog1" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+       <h4><b>Do You want to cancel your order</b></h4>
+      <form action="destroy_orders" accept-charset="UTF-8" method="post">
+       <input type="hidden"id="invoice_id" name="invoices[invoice_id]" />
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+        <button type="submit" class="btn btn-primary">Yes</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="addBookDialog"tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+   <div class="modal-content">
+      <div class="modal-body">
+          <div class="card">
+            <div class="card-body mx-4">
+              <div class="container">
+                  <p class="my-6 mx-6" style="font-size: 30px;">Thank for your purchase</p>
+                  <div class="row">
+                  <ul class="list-unstyled">
+                  <li class="text-black"><b>Hello !! <%= current_user.name %></b></li>
+                  <li class="text-muted mt-1"><span class="text-black">Invoice</span> #12345</li>
+                  <li class="text-black mt-1"><b>Date:-</b><input type="button"id="item_date" /> </li>
+                  <li class="text-black mt-1"><b>Time:-</b><input type="button"id="item_time" /> </li>
+                  </ul>
+                  <hr>
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th scope="col">Product_name</th>
+                        <th scope="col">Product_price</th>
+                        <th scope="col">Product_quatity</th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td><input type="button"id="item_name"/></td>
+                          <td><input type="button"id="item_price"/></td>
+                          <td><input type="button"id="item_quatity"/></td>
+                        </tr>
+                    </tbody>
+                  </table>
+                   <div class="row">
+                     <div class="col-xl-8" style="margin-left:100px">
+                          <b>Total Amount :-<input type="button"id="total_amount"/></b>
+                      </div>
+                    </div>
+                   <span class="text-danger">order cancel only within 2 days ,after 2 days you can't cancel your order</span>
+             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  $(document).on("click", ".open-AddBookDialog", function () {
+    var item_date = $(this).data('id1');
+    var item_time = $(this).data('id2');
+    var item_name = $(this).data('id3');
+    var item_price = $(this).data('id4'); 
+    var item_quatity = $(this).data('id5'); 
+    var total_amount = $(this).data('id6'); 
+    $(".modal-body #item_date ").val( item_date  );
+    $(".modal-body #item_time").val( item_time );
+    $(".modal-body #item_name").val( item_name );
+    $(".modal-body #item_price").val( item_price );
+    $(".modal-body #item_quatity").val( item_quatity );   
+    $(".modal-body #total_amount").val( total_amount );       
+  });
+  $(document).on("click", ".open-AddBookDialog1", function () {
+    var invoice_id = $(this).data('id1');
+    $(".modal-body #invoice_id ").val(invoice_id);
+
+  });
+</script>

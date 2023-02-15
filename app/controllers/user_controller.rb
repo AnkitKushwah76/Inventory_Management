@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UserController < ApplicationController
   def index
     user_id = User.find(current_user.id)

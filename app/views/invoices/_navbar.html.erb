@@ -19,7 +19,7 @@
 <body>
 
 	<!-- this is Navbar -->
-	<nav class="navbar navbar-expand-lg navbar-dark bg-primary navbar-fixed-top">
+	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
 	    <%if current_user.name==nil%>
 		<a class="navbar-brand " href="#">Inventory_Management</a>
 		<%else%>
@@ -28,9 +28,8 @@
 					Your-Profile
 				</button>
 				<div class="dropdown-menu">
-					<%# <%= link_to "Start Selling", new_item_path,  class:"dropdown-item" %> 
+                	<a class="dropdown-item" href='user'>Home</a>
 					<a class="dropdown-item" href="my_products">My Products</a>
-					<a class="dropdown-item" href="my_orders">My Orders </a>
 				</div>
             </div>
 

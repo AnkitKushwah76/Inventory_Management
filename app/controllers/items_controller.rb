@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ItemsController < ApplicationController
   def index
     @items = Item.all
@@ -17,7 +19,7 @@ class ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     if @item.save
-      ConfirmationsMailer.create_items(current_user.email, current_user.name, @item).deliver
+      ConfirmationsMailer.create_items(current_user.email, current_user.name, @item).deliver_later
       redirect_to action: 'my_products'
     else
       render :new, status: :unprocessable_entity
@@ -31,10 +33,10 @@ class ItemsController < ApplicationController
   def update
     item_arr = []
     @item = Item.find(params[:id])
-    item_arr.push(current_user.email, current_user.name, @item.item_name,
-                  @item.item_price, @item.id, @item.item_quatity)
+    item_arr.push(current_user.email, current_user.name, @item.item_name, @item.item_price, @item.id,
+                  @item.item_quatity)
     if @item.update(item_params)
-      ConfirmationsMailer.update_items(item_arr).deliver
+      ConfirmationsMailer.update_items(item_arr).deliver_later
       redirect_to action: 'index'
     else
       render :edit, status: :unprocessable_entity

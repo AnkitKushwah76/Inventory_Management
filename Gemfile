@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
-git_source(:github) { |_repo| 'https://github.com/#{repo}.git' }
+git_source(:github) { |_repo| "https://github.com/#{repo}.git" }
 
 ruby '3.2.0'
 
@@ -59,6 +61,8 @@ end
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem 'web-console'
+  gem 'rolify'
+
 
   # gem "letter_opener"
 
