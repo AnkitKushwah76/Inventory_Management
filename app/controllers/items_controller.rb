@@ -33,8 +33,7 @@ class ItemsController < ApplicationController
   def update
     item_arr = []
     @item = Item.find(params[:id])
-    item_arr.push(current_user.email, current_user.name, @item.item_name, @item.item_price, @item.id,
-                  @item.item_quatity)
+    item_arr.push(current_user.email, current_user.name, @item.item_name, @item.item_price, @item.id, @item.item_quatity)
     if @item.update(item_params)
       ConfirmationsMailer.update_items(item_arr).deliver_later
       redirect_to action: 'index'
@@ -50,6 +49,7 @@ class ItemsController < ApplicationController
   end
 
   def my_products
+    a=User.find(1)
     @items = Item.where(user_id: current_user.id)
   rescue StandardError
     redirect_to(controller: 'user', action: 'index')

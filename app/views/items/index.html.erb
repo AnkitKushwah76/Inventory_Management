@@ -1,116 +1,105 @@
 <%= render 'navbar'%>
-
-<h1 class="text-center">All Items</h1>
+<marquee behavior="scroll" direction="right" scrollamount="12"><h1>All Products</h1> </marquee>
 <!DOCTYPE html>
 <html>
-<head>
-<%= stylesheet_link_tag "buy_button.css" %>
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<style>
-</style>
-</head>
-<body>
-<table class="table">
- <thead class="thead-dark">
-  <tr>
-    <th scope="col"><p>ItemName</p></th>
-    <th scope="col">Price</th>
-    <th scope="col">ItemQuantity</th>
-    <th scope="col">image</th>
-    <th scope="col">Action</th>
-  </tr>
-   </thead>
-    <tbody>
-     <%@items.each do |item|%>
-      <tr>
-          <td><b><%=item.item_name%></b></td>
-          <td><b><%=item.item_price%></b></td>
-          <% if item.item_quatity.eql?nil%>
-          <td><%=0%></td>
-          <%else%>
-          <td><b><%=item.item_quatity%></b></td>
-          <%end%>
-          <td>
-          <%if item.item_image.attached?%>
-          <%= image_tag item.item_image ,style:"width:100px;height:100px"%>
-          <%end%>
-          </td>    
-          <td>
-          <%if item.item_quatity.to_i!=0 %>
-            <a data-toggle="modal" data-id1=<%=item.item_name%>
-            data-id2=<%=item.item_price%>
-            data-id3= <%=item.item_quatity%>
-            data-id4=<%=item.id%>
-            data-id5=<%= current_user.name%>
-            title="Add this item" class="open-AddBookDialog button" 
-            href="#addBookDialog">Buy Now</a>
-            <%else %>
-            <a class=" button" disabled >Not available</a>
-            <%end %>
-           </td>
-          <%end%>
-      </tr>
+  <head>
+  <%= stylesheet_link_tag "buy_button.css" %>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <style>
+  </style>
+  </head>
+  <body>
+    <table class="table">
+      <thead class="thead-dark">
+         <tr>
+            <th scope="col">Items Name</th>
+            <th scope="col">Items Price</th>
+            <th scope="col">Items Quantity</th>
+            <th scope="col">Items Image</th>
+            <th scope="col">Action</th>
+          </tr>
+       </thead>
+      <tbody>
+        <%@items.each do |item|%>
+          <tr>
+            <td><b><%=item.item_name%></b></td>
+            <td><b><%=item.item_price%></b></td>
+            <% if item.item_quatity.eql?nil%>
+            <td><%=0%></td>
+            <%else%>
+            <td><b><%=item.item_quatity%></b></td>
+            <%end%>
+            <td>
+            <%if item.item_image.attached?%>
+            <%= image_tag item.item_image ,style:"width:100px;height:100px"%>
+            <%end%>
+            </td>    
+            <td>
+            <%if item.item_quatity.to_i!=0 %>
+              <a data-toggle="modal" data-id1=<%=item.item_name%>
+              data-id2=<%=item.item_price%>
+              data-id3= <%=item.item_quatity%>
+              data-id4=<%=item.id%>
+              data-id5=<%= current_user.name%>
+              title="Add this item" class="open-AddBookDialog button" 
+              href="#addBookDialog">Buy Now</a>
+              <%else %>
+              <a class=" button" disabled >Not available</a>
+              <%end %>
+            </td>
+            <%end%>
+          </tr>
       </tbody>
-
-</table>
-
-</body>
+    </table>
+  </body>
 </html>
-
- <!-- Button trigger modal -->
-
-
 <!-- Modal -->
 <div class="modal fade" id="addBookDialog"tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
-   <div class="modal-content">
-      <div class="modal-header">
+    <div class="modal-content">
+        <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Informations </h5>
-      </div>
-     <div class="modal-body">
-        <form action="invoices" accept-charset="UTF-8" method="post">
-          <h6>CustomerName-<input type="text" disabled="disabled" name="invoices[customer_name]" id="current_user" ></h6>
-            <h6>Item_Name:-<input type="text" disabled="disabled" name="invoices[item_name]" id="itemName" ></h6>
-            <h6>Item_Price:-<input type="text" disabled="disabled" name="invoices[item_price]"  id="price" ></h6>
-            <h6>Item_Quantity:-<input type="button"  id="quantity" ></h6>
-            <input type="hidden" name="invoices[item_id]" id="itemId" >
-            <input type="hidden" name="invoices[user_id]" value=<%= current_user.id %> >
-             Select-Quantity: <input type="number" name="invoices[item_quatity]" value="0"  id="itemquantity" />
-          <div class="modal-footer">
-            <button type="reset" class="btn btn-secondary" data-dismiss="modal">Close</button> 
-            <button type="submit" class="btn btn-primary" id="submit" disabled="disabled">Buy_Now</button>
+        </div>
+        <div class="modal-body">
+            <form action="invoices" accept-charset="UTF-8" method="post">
+              <h6>CustomerName-<input type="text" disabled="disabled" name="invoices[customer_name]" id="current_user" ></h6>
+              <h6>Item_Name:-<input type="text" disabled="disabled" name="invoices[item_name]" id="itemName" ></h6>
+              <h6>Item_Price:-<input type="text" disabled="disabled" name="invoices[item_price]"  id="price" ></h6>
+              <h6>Item_Quantity:-<input type="button"  id="quantity" ></h6>
+              <input type="hidden" name="invoices[item_id]" id="itemId" >
+              <input type="hidden" name="invoices[user_id]" value=<%= current_user.id %> >
+              Select-Quantity: <input type="number" name="invoices[item_quatity]" value="0"  id="itemquantity" />
+              <div class="modal-footer">
+                <button type="reset" class="btn btn-secondary" data-dismiss="modal">Close</button> 
+                <button type="submit" class="btn btn-primary" id="submit" disabled="disabled">Buy_Now</button>
+              </div>
+            </form>
           </div>
-        </form>
-        </div>
-        </div>
-        </div>
-        </div>
-    </div>
+     </div>
+  </div>
 </div>
 <script>
    $(document).on("click", ".open-AddBookDialog", function () {
-        var itemName = $(this).data('id1');
-        var price = $(this).data('id2');
-        var quantity = $(this).data('id3');
-        var itemId = $(this).data('id4'); 
-          var current_user = $(this).data('id5'); 
-        $(".modal-body #itemName").val( itemName );
-        $(".modal-body #price").val( price );
-        $(".modal-body #quantity").val( quantity );
-        $(".modal-body #itemId").val( itemId );
-        $(".modal-body #current_user").val( current_user );     
+    var itemName = $(this).data('id1');
+    var price = $(this).data('id2');
+    var quantity = $(this).data('id3');
+    var itemId = $(this).data('id4'); 
+    var current_user = $(this).data('id5'); 
+    $(".modal-body #itemName").val( itemName );
+    $(".modal-body #price").val( price );
+    $(".modal-body #quantity").val( quantity );
+    $(".modal-body #itemId").val( itemId );
+    $(".modal-body #current_user").val( current_user );     
   });
 
   $(document).ready(function () {
-  $('#itemquantity').on('input change', function () {
-    
+    $('#itemquantity').on('input change', function () {
       if ($(this).val() > 0 && $(this).val() != '' ) {
-          $('#submit').prop('disabled', false);
+      $('#submit').prop('disabled', false);
       }
       else {
-          $('#submit').prop('disabled', true);
+      $('#submit').prop('disabled', true);
       }
+    });
   });
-});
-
 </script>

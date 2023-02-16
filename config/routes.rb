@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   }
 
   root 'user#index'
+  get 'all_Products', to:'user#all_Products'
   get 'my_products', to: 'items#my_products'
   get 'my_orders', to: 'invoices#my_orders'
   post 'destroy_orders', to: 'invoices#destroy_orders'
