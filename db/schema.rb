@@ -48,6 +48,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_15_115114) do
     t.string "time"
     t.string "total_amount"
     t.integer "item_id"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

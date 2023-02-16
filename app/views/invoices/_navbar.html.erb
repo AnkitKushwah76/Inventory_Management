@@ -1,12 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<!-- Required meta tags -->
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<!-- Bootstrap CSS -->
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
 	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
@@ -14,25 +12,18 @@
 
 <%= stylesheet_link_tag "all.css" %>
 <title >base html</title>
- <!--  <link th:href="@{/css/style.css}" rel="stylesheet" /> -->
 </head>
 <body>
-
-	<!-- this is Navbar -->
 	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
 	    <%if current_user.name==nil%>
 		<a class="navbar-brand " href="#">Inventory_Management</a>
 		<%else%>
-            <div class="btn-group">
-				<button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					Your-Profile
-				</button>
-				<div class="dropdown-menu">
-                	<a class="dropdown-item" href='user'>Home</a>
-					<a class="dropdown-item" href="my_products">My Products</a>
-				</div>
-            </div>
-
+      <% if current_user.has_role? :admin %>
+      <a class="navbar-brand" href='user'>Home</a>
+      <%else%>
+      <a class="navbar-brand" href='user'>Home</a>
+			<a class="navbar-brand" href="my_products">My Products</a>
+      <%end%>
 		<%end%>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarSupportedContent"
@@ -50,7 +41,6 @@
 	 <li class="nav-item active"><b><%=link_to 'Sign_In',new_user_session_path,class:"nav-link "%></b></li>
 		<%end%>									
 		</ul>
-			
 		</div>
 	</nav>
 
@@ -68,9 +58,7 @@
 			</div>
 		</div>
 	</div>
-	
       <!--End Navbar -->
-
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
 		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
 		crossorigin="anonymous"></script>
@@ -87,6 +75,5 @@
 		src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
 		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
 		crossorigin="anonymous"></script>
-
 </body>
 </html>

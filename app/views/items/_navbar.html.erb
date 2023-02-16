@@ -1,39 +1,29 @@
 <!DOCTYPE html>
 <html>
 <head>
-<!-- Required meta tags -->
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-<!-- Bootstrap CSS -->
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
 	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
 	crossorigin="anonymous">
-
 <%= stylesheet_link_tag "all.css" %>
 <title >base html</title>
- <!--  <link th:href="@{/css/style.css}" rel="stylesheet" /> -->
 </head>
 <body>
-
-	<!-- this is Navbar -->
 	<nav class="navbar navbar-expand-lg navbar-dark bg-primary navbar-fixed-top">
 	    <%if current_user.name==nil%>
 		<a class="navbar-brand " href="#">Inventory_Management</a>
 		<%else%>
-            <div class="btn-group">
-				<button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					Your-Profile
-				</button>
-				<div class="dropdown-menu">
-					<%# <%= link_to "Start Selling", new_item_path,  class:"dropdown-item" %> 
-					<a class="dropdown-item" href="my_products">My Products</a>
-					<a class="dropdown-item" href="my_orders">My Orders </a>
-				</div>
-            </div>
-
+      <% if current_user.has_role? :admin %>
+          <a class="navbar-brand" href="my_products">All Users</a>
+          <a class="navbar-brand" href="my_orders">My Orders </a>
+          <a class="navbar-brand"href="all_Products">All Products</a>
+       <%else%>
+        <a class="navbar-brand"href="my_products">My Products</a>
+        <a class="navbar-brand" href="my_orders">My Orders </a>
+      <%end%>
 		<%end%>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarSupportedContent"
@@ -42,19 +32,21 @@
 			<span class="navbar-toggler-icon"></span>
 		</button>
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-		<ul class="navbar-nav ml-auto text-uppercase">
-	 <a class="navbar-brand" href="#"><b>User_Name:-<%= current_user.name %></b></a>
-    <% if user_signed_in? %>
-   <li class="nav-item active"> <a data-toggle ="modal"
-		data-target="#exampleModal" class="nav-link "><b>Logout</b></a></li>
-		<%else%>
-	 <li class="nav-item active"><b><%=link_to 'Sign_In',new_user_session_path,class:"nav-link "%></b></li>
-		<%end%>									
-		</ul>
-			
+        <ul class="navbar-nav ml-auto text-uppercase">
+       <% if current_user.has_role? :admin %>
+      <a class="navbar-brand" href="#"><b>Admin_Name:-<%= current_user.name %></b></a>
+        <%else%>
+      <a class="navbar-brand" href="#"><b>User_Name:-<%= current_user.name %></b></a>
+        <%end%>
+        <% if user_signed_in? %>
+      <li class="nav-item active"> <a data-toggle ="modal"
+        data-target="#exampleModal" class="nav-link "><b>Logout</b></a></li>
+        <%else%>
+      <li class="nav-item active"><b><%=link_to 'Sign_In',new_user_session_path,class:"nav-link "%></b></li>
+        <%end%>									
+        </ul>
 		</div>
 	</nav>
-
 	<!-- Modal -->
 	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
