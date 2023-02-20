@@ -33,5 +33,10 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
-.byebug_history
 /tmp
+# Ignore uploaded files in development.
+/test/*
+/home/developer/Desktop/Inventory_Management/.byebug_history
+/helpers/*
+
+

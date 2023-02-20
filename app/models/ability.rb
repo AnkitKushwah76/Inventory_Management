@@ -4,10 +4,8 @@ class Ability
   include CanCan::Ability
   def initialize(users)
     byebug
-    if users.has_role? 'admin'
-      can :read, Items
-      puts "ooooooooooooooooooooooooooooo"
-    end
-    
+    return unless users.has_role? 'admin'
+
+    can :read, Items
   end
 end

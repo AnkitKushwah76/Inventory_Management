@@ -6,7 +6,7 @@ class Invoice < ApplicationRecord
   after_validation :create_invoices_date_and_time
 
   private
-  
+
   def create_invoices_date_and_time
     time = Time.new
     item_id = self.item_id
