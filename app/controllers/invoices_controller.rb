@@ -2,11 +2,9 @@
 
 class InvoicesController < ApplicationController
   def index; end
-
   def new
     Invoices.new
   end
-
   def create
     invoices = Invoice.new(invoices_params)
     if invoices.save
@@ -17,13 +15,19 @@ class InvoicesController < ApplicationController
   end
 
   def my_orders
-    @my_orders = Invoice.where(user_id: current_user.id)
+    begin
+      @my_orders = Invoice.where(user_id: current_user.id)
+    rescue => exception
+      redirect_to(controller: 'user', action: 'index')
+    ensure
+      
+    end
   end
 
   def destroy_orders
     invoices = Invoice.find(params[:invoices][:invoice_id])
     invoices.destroy
-    redirect_to(controller: 'items', action: 'my_products')
+    redirect_to action: 'my_orders'
   end
 
   private

@@ -1,88 +1,76 @@
 
-
 <%= render 'navbar'%>
-
-
 <!DOCTYPE html>
 <html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-body {font-family: Arial, Helvetica, sans-serif;}
-* {box-sizing: border-box;}
+   <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {font-family: Arial, Helvetica, sans-serif;}
+        * {box-sizing: border-box;}
 
-input[type=text], select, textarea {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-  margin-top: 6px;
-  margin-bottom: 16px;
-  resize: vertical;
-}
+        input[type=text], select, textarea {
+          width: 100%;
+          padding: 12px;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          box-sizing: border-box;
+          margin-top: 6px;
+          margin-bottom: 16px;
+          resize: vertical;
+        }
 
-input[type=submit] {
-  background-color: #04AA6D;
-  color: white;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
+        input[type=submit] {
+          background-color: #04AA6D;
+          color: white;
+          padding: 12px 20px;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+        }
 
-input[type=submit]:hover {
-  background-color: #45a049;
-}
+        input[type=submit]:hover {
+          background-color: #45a049;
+        }
 
-.container {
-  border-radius: 5px;
-  background-color: #f2f2f2;
-  padding: 20px;
-}
-</style>
-</head>
-<body>
-<%# <a class="nav-link " 
-					href="/contact/index" tabindex="-1" >Back</a> %>
-<div class="text-center">
-<h3>Edit information</h3>
-</div>
-
-<div class="container">
-
-<%= form_with model: @item do |f| %>
-  <div>
-    <%= f.label :Item_name %><br>
-    <%= f.text_field :item_name %><br>
-  </div>
-
-  <div>
-   <%= f.label :Item_price %><br>
-   <%= f.text_field :item_price %><br>
-  </div>
-  
-  <div>
-    <%= f.label :Quantity %><br>
-    <%if @item.eql?nil%>
-    <input type="number" name="item[item_quatity]" value=<%=0%>>
-    <%else%>
-    <input type="number" name="item[item_quatity]" value=<%=@item.item_quatity%>>
-    <%end%>
-  </div>
-  
-
-  <div>
-   <%= f.label :Item_image %><br>
-   <%= f.file_field :item_image %><br>
-  </div>
-
-  <input type="hidden" name="item[user_id]" value=<%=current_user.id%>>
-    <div>
-    <br><br>
-    <%= f.submit %>
-    </div>
-<% end %>
-</div>
-</body>
+        .container {
+          border-radius: 5px;
+          background-color: #f2f2f2;
+          padding: 20px;
+        }
+   </style>
+  </head>
+  <body>
+      <div class="text-center">
+      <h3>Edit information</h3>
+      </div>
+      <div class="container">
+          <%= form_with model: @item do |f| %>
+          <div>
+            <%= f.label :Item_name %><br>
+            <%= f.text_field :item_name %><br>
+          </div>
+          <div>
+            <%= f.label :Item_price %><br>
+            <%= f.text_field :item_price %><br>
+          </div>
+          <div>
+            <%= f.label :Quantity %><br>
+            <%if @item.eql?nil%>
+            <input type="number" name="item[item_quatity]" value=<%=0%>>
+            <%else%>
+            <input type="number" name="item[item_quatity]" value=<%=@item.item_quatity%>>
+            <%end%>
+          </div>
+          <div>
+            <%= f.label :Item_image %><br>
+            <%= f.file_field :item_image %><br>
+          </div>
+          <input type="hidden" name="item[user_id]" value=<%=current_user.id%>>
+            <div>
+            <br><br>
+            <%= f.submit %>
+            </div>
+         <% end %>
+      </div>
+   </body>
 </html>
