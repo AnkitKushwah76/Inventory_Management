@@ -5,10 +5,10 @@ class ItemsController < ApplicationController
     @items = Item.all
     @items1 = Item.where(user_id: current_user.id)
     respond_to do |format|
-      format.html
-      format.csv { send_data @items1.to_csv, filename: "Items-#{Date.today}.csv" }
+    format.html
+    format.csv { send_data @items1.to_csv, filename: "Items-#{Date.today}.csv" }
     end
-  rescue StandardError
+   rescue StandardError
     redirect_to(controller: 'user', action: 'index')
   end
 
@@ -22,7 +22,7 @@ class ItemsController < ApplicationController
       CreateJob.set(wait: 5.minutes).perform_later(current_user.email, current_user.name, @item)
       # ConfirmationsMailer.create_items(current_user.email, current_user.name, @item).deliver_later
       redirect_to action: 'my_products'
-    else
+     else
       render :new, status: :unprocessable_entity
     end
   end
@@ -35,12 +35,12 @@ class ItemsController < ApplicationController
     item_arr = []
     @item = Item.find(params[:id])
     item_arr.push(current_user.email, current_user.name, @item.item_name, @item.item_price, @item.id,
-                  @item.item_quatity)
+    @item.item_quatity)
     if @item.update(item_params)
-      ConfirmationsMailer.update_items(item_arr).deliver_later
+      # ConfirmationsMailer.update_items(item_arr).deliver_later
       CreateJob.perform_now(current_user.email, current_user.name, @item)
-      redirect_to action: 'index'
-    else
+      redirect_to action: 'my_products'
+     else
       render :edit, status: :unprocessable_entity
     end
   end

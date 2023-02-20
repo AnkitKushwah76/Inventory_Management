@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-
 class InvoicesController < ApplicationController
   def index; end
   def new
@@ -9,7 +8,7 @@ class InvoicesController < ApplicationController
     invoices = Invoice.new(invoices_params)
     if invoices.save
       redirect_to(controller: 'items', action: 'index')
-    else
+     else
       puts 'sorry'
     end
   end
@@ -17,10 +16,8 @@ class InvoicesController < ApplicationController
   def my_orders
     begin
       @my_orders = Invoice.where(user_id: current_user.id)
-    rescue => exception
+     rescue => exception
       redirect_to(controller: 'user', action: 'index')
-    ensure
-      
     end
   end
 
@@ -33,6 +30,6 @@ class InvoicesController < ApplicationController
   private
 
   def invoices_params
-    params.require(:invoices).permit(:item_name, :item_price, :item_quatity, :item_id, :user_id)
+    params.require(:invoices).permit(:item_quatity, :item_id, :user_id)
   end
 end

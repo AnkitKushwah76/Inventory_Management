@@ -64,6 +64,8 @@ group :development do
   gem 'rolify'
   gem 'sidekiq'
   gem 'web-console'
+  gem 'activestorage'
+
 
   # gem "letter_opener"
 

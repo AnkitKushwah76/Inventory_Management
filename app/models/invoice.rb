@@ -1,7 +1,7 @@
 # frozen_string_literal: true
-
 require 'date'
 class Invoice < ApplicationRecord
+
   belongs_to :item
   after_validation :create_invoices_date_and_time
 
