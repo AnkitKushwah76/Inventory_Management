@@ -2,6 +2,8 @@
 
 require 'csv'
 class Item < ApplicationRecord
+  ActiveStorage::Current.host = ENV['APPLICATION_URL']
+  include Rails.application.routes.url_helpers
   has_one_attached :item_image
   has_many :invoices, dependent: :destroy
   belongs_to :user, optional: true
