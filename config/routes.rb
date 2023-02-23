@@ -6,6 +6,10 @@ Rails.application.routes.draw do
       resources :user
       resources :items
       resources :invoices
+      get 'invoicesSearch', to: 'invoices#invoicesSearch'
+      get 'itemsSearch', to: 'items#itemsSearch'
+
+      
     end
   end
   mount Sidekiq::Web => '/sidekiq'
@@ -15,6 +19,7 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   }
   root 'user#index'
+  # root 'api/v1/user#index'
   get 'all_Products', to: 'user#all_Products'
   get 'my_products', to: 'items#my_products'
   get 'my_orders', to: 'invoices#my_orders'

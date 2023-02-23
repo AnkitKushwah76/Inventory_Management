@@ -48,6 +48,7 @@
             <%if time.strftime('%d/%m/%Y').to_i-(date).to_i<=2 %>
             <a data-toggle ="modal"
 		        data-id1=<%=invoice.id%>
+            data-id2=<%=items.id%>
             class="open-AddBookDialog1 btn btn-danger" href="#addBookDialog1">Cancel Order</a>
            <%else%>
            <a href="#" class="btn btn-danger btn-ml disabled" tabindex="-1" role="button" aria-disabled="true">Cancel Order</a>
@@ -67,6 +68,7 @@
        <h4><b>Do You want to cancel your order</b></h4>
       <form action="destroy_orders" accept-charset="UTF-8" method="post">
        <input type="hidden"id="invoice_id" name="invoices[invoice_id]" />
+        <input type="hidden"id="item_id" name="invoices[item_id]" />
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
@@ -139,6 +141,8 @@
   });
   $(document).on("click", ".open-AddBookDialog1", function () {
     var invoice_id = $(this).data('id1');
+    var item_id = $(this).data('id2');
     $(".modal-body #invoice_id ").val(invoice_id);
+    $(".modal-body #item_id ").val(item_id);
   });
 </script>

@@ -23,8 +23,12 @@ class InvoicesController < ApplicationController
 
   def destroy_orders
     invoices = Invoice.find(params[:invoices][:invoice_id])
-    invoices.destroy
-    redirect_to action: 'my_orders'
+    item_quatity=invoices.item_quatity
+    if invoices.destroy
+     item=Item.find(params[:invoices][:item_id]) 
+     item.update(item_quatity:item.item_quatity.to_i+item_quatity.to_i)
+     redirect_to action: 'my_orders'
+    end
   end
 
   private

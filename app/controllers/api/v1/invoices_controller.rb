@@ -4,14 +4,16 @@ class Api::V1::InvoicesController < ApplicationController
     invoices = Invoice.all
     render json: invoices
   end
+
   def show
     begin
-     invoice=Invoice.find(params[:id])
+      invoice=Invoice.find(params[:id])
       render json: invoice, status: 200
       rescue
       render json: { error: 'record not found....' }
     end
   end
+
   def create
     begin
      invoices = Invoice.new(invoices_params)
@@ -21,6 +23,26 @@ class Api::V1::InvoicesController < ApplicationController
       render json: { error: 'Error creating....' }
     end
   end
+  def invoicesSearch
+      invoices = Invoice.where('item_name LIKE ?', "%#{params[:invoices][:item_name]}%")
+      if invoices.empty?()
+        render json: { error: 'record not found....' }
+      else
+      render json: invoices, status: 200
+    end
+  end
+
+  def destroy
+    begin
+      invoice = Invoice.find(params[:id])
+      invoice.delete
+      render json: invoice, status: 200
+      # render json: { message: ' Invoice successfully..'}
+      rescue
+      render json: { error: 'record not found....' }
+    end
+  end
+
   private
 
   def invoices_params
